@@ -3,20 +3,18 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"log"
-	"os/exec"
+	"os"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	hostname, err := exec.Command("hostname").Output()
-	if err != nil {
-		fmt.Fprintf(w, "Hello, World %s", hostname)
-	} else {
-		log.Fatal(err)
-	}
+	hostname, err := os.Hostname()
+	var message = "Test@" + hostname
+	fmt.Fprintf(w, message)
+	var _ = hostname
+	var _ = err
 }
 
 func main() {
-	http.HandleFunc("/", handler) // ハンドラを登録してウェブページを表示させる
+	http.HandleFunc("/", handler)
 	http.ListenAndServe(":8080", nil)
 }
