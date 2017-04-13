@@ -8,7 +8,7 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	hostname, err := os.Hostname()
-	var message = "Test3@" + hostname + "\n"
+	var message = "Test Message 1@" + hostname + "\n"
 	fmt.Fprintf(w, message)
 	var _ = hostname
 	var _ = err
