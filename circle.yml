@@ -4,7 +4,8 @@ machine:
 
 dependencies:
   override:
-    - docker info
+    - go get github.com/mittz/testwebapp
+    - go build -o ./hello hello.go
     - docker build -t mittz/testwebapp-bin .
 
 deployment:
