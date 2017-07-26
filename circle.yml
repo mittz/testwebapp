@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - go get github.com/mittz/testwebapp
-    - CGO_ENABLED=0 GOOS=linux go build -o ./hello hello.go
+    - CGO_ENABLED=0 GOOS=linux go build -ldflags="-w" -o ./hello hello.go
     - docker build -t mittz/testwebapp-bin .
 
 deployment:
