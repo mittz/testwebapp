@@ -3,9 +3,12 @@ machine:
     - docker
 
 dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install upx
   override:
     - go get github.com/mittz/testwebapp
     - CGO_ENABLED=0 GOOS=linux go build -ldflags="-w" -o ./hello hello.go
+    - upx -1 ./hello
     - docker build -t mittz/testwebapp-bin .
 
 deployment:
